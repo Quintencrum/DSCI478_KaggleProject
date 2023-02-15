@@ -11,3 +11,15 @@ URL for kaggle: https://www.kaggle.com/competitions/digit-recognizer/data?select
 
 
 https://www.kaggle.com/competitions/digit-recognizer/overview
+
+
+
+Library Ideas:
+
+Pytorch
+Scipy
+Tensor Flow
+Open CV
+Pandas
+Matplotlin
+NumPy
