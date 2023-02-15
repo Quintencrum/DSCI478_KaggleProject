@@ -8,3 +8,6 @@ Date: March 1st, 2023
 This project is based of off a Kaggle Getting Started competition 
 
 URL for kaggle: https://www.kaggle.com/competitions/digit-recognizer/data?select=test.csv
+
+
+https://www.kaggle.com/competitions/digit-recognizer/overview
