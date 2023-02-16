@@ -13,8 +13,6 @@ URL for kaggle: https://www.kaggle.com/competitions/digit-recognizer/overview
 
 ## Library Ideas
 
-Python 3.10.x ??
-
 Pytorch
 Scipy
 Tensor Flow
