@@ -11,3 +11,15 @@
   - Paper should be well orginized and free of any errors
 
 ## Outline
+
+Sections:
+  - Introduction
+  - Summary of the Problem
+  - Overview of the Data
+  - Summary of the Solution(s)
+  - Analysis of the Solution(s)
+  - Conclusion
+
+### Introduction
+
+
