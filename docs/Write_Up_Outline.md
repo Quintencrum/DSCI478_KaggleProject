@@ -12,6 +12,8 @@
 
 ## Outline
 
+Paper and Jupyter Notebook
+
 Sections:
   - Introduction
   - Summary of the Problem
@@ -42,15 +44,14 @@ Sections:
 
 ### Summary of the Solution(s)
   - Models to classify MNIST:
-    - Kaggle's suggestions:
-      - Regression
-      - Simple Neural Networks
-      - SVM
-      - K-nearest neighbors
-    - Group's Choices:
-      - PCA
-      - Decission Tree
-      - More?
+    - Choices:
+      - Logistical Regression - Jorie
+      - KNN - Q
+      - SVM - Luke
+      - Neural Networks - All
+      - Naive Bayes & PCA - Jorie
+      - Decison Tree - Luke
+      - Random Forest - Q
   - Which model will have the best overall preformance? Why?
     - Each group member's hypothesis
     - Preformance Metrics
