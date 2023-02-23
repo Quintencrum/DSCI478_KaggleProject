@@ -1,3 +1,6 @@
+# Data
+src/data/processed/*
+
 # Python
 __pycache__/
 
