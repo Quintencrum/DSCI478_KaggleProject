@@ -41,6 +41,7 @@ def main(ftype: str, validation_percent: float=0.2, overwrite=False):
         np.savetxt(process_dir.joinpath(PROCESSED_DATA_FILES["labels_t"]), labels_train, delimiter=',')
         np.savetxt(process_dir.joinpath(PROCESSED_DATA_FILES["xs_v"]), xs_validation, delimiter=',')
         np.savetxt(process_dir.joinpath(PROCESSED_DATA_FILES["labels_v"]), labels_validation, delimiter=',')
+        print("Locally saved the processed data")
         
         return xs_train, labels_train, xs_validation, labels_validation
     
@@ -51,6 +52,8 @@ def main(ftype: str, validation_percent: float=0.2, overwrite=False):
         for file in listdir(process_dir):
             if file not in PROCESSED_DATA_FILES.values():
                 return main(ftype, validation_percent, overwrite=True)
+        if len(listdir(process_dir)) == 0:
+            return main(ftype, validation_percent, overwrite=True)
 
         # If all files exist, grab them
         xs_train = pd.read_csv(process_dir.joinpath(PROCESSED_DATA_FILES["xs_t"]),
