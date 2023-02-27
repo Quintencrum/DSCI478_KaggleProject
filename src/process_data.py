@@ -52,6 +52,7 @@ def main(ftype: str, validation_percent: float=0.2, overwrite=False):
         return xs_train, labels_train, xs_validation, labels_validation
     
     else:
+        # Why was this "processed"? 
         process_dir = utils.get_data_path().joinpath("processed")
 
         # Check if files exist
