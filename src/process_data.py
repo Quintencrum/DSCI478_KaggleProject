@@ -12,7 +12,7 @@ PROCESSED_DATA_FILES = {"xs_t": "xs_train.csv", "labels_t": "labels_train.csv",
 def get_data(ftype: str):
     raw_df = pd.read_csv(utils.get_data_path().joinpath("raw",RAW_DATA_FILES[ftype]),
                      sep=',', header=[0], dtype=int)
-    assert not np.any(raw_df.isna()), f"Nulls in the dataset {datafiles[ftype]}"
+    assert not np.any(raw_df.isna()), f"Nulls in the dataset {RAW_DATA_FILES[ftype]}"
     
     return raw_df
 
