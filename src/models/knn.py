@@ -20,8 +20,7 @@ import process_data as data
 
 
 
-### Actuall KNN
-
+### Actual KNN
 class KNN:
     def __init__(self, k):
         self.k = k
@@ -49,37 +48,23 @@ class KNN:
 
 
 def main():
+    #getting training data
     train = data.get_data("train")
-    # train_nump = train.to_numpy()
-    # print(train)
-    # print(train.dtypes)
-    # print(train.iloc[0,0])  #[image num, label value or pixel value]
-    # print(train.iloc[0])
-    # print(type(train))
-
-    # print(train_nump[0])
-    # print(train.iloc[:,0])
-
     y_train = train.iloc[:,0]
     x_train = train.iloc[:,1:]
 
-    # data = pd.DataFrame({'X1': [1, 4, 7, 10], 'X2': [2, 5, 8, 11], 'X3': [3, 6, 9, 12], 'y': [0, 1, 1, 0]})
-    # X_train = data.iloc[:, :-1]
-    # y_train = data.iloc[:, -1]
-    # print(y_train)
-
+    #creating KNN object and training
     knn = KNN(k=3)
     knn.fit(x_train, y_train)
 
+    #getting testing data
+    # test = data.get_data("test")
+    # x_test = test.iloc[:,:]
 
-    test = data.get_data("test")
-    x_test = test.iloc[:,:]
-
-
-    y_pred = knn.predict(x_test)
-
-    print(y_pred)
-
+    # #testing 
+    # y_pred = knn.predict(x_test)
+    # print(y_pred)
+    print('Main complete')
 
 
 if __name__ == '__main__':
