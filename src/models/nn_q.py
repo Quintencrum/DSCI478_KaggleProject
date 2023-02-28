@@ -29,15 +29,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 def main():
     #getting training data
-    train = data.get_data("train")
-    y_train = train.iloc[:,0]
-    x_train = train.iloc[:,1:]
-
-    
-
-    #getting testing data
-    test = data.get_data("test")
-    x_test = test.iloc[:,:]
+    xs_train, ys_train, xs_val, ys_val = data.main("train") 
 
     # model
     model = tf.keras.Sequential([
@@ -47,23 +39,20 @@ def main():
         keras.layers.Dense(units=10, activation='softmax')
     ])
 
-    # Compile the model
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
     # Fit the model to the training data
-    model.fit(x_train, y_train, epochs=10)
-
-    #getting testing data
-    test = data.get_data("test")
-    x_test = test.iloc[:,:]
-
+    model.fit(xs_train, ys_train, epochs=20)
 
     #testing 
-    y_pred = model.predict(x_test)
-    print(y_pred)
+    y_pred = model.predict(xs_val)
+    print('Q\'s Neural Network predicts the test data labels to be: ',y_pred)
+
+    #accuracy
+    loss, accuracy = model.evaluate(xs_val, ys_val)
+    print('Test accuracy:', round(accuracy,2))
 
 
-    # print('The Random Forest predicts the test data labels to be: ',y_pred)
 
 
 if __name__ == '__main__':
