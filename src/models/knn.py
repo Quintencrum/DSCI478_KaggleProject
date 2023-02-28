@@ -53,6 +53,9 @@ def main():
     y_train = train.iloc[:,0]
     x_train = train.iloc[:,1:]
 
+    #attempting to subset training data to make is so KNN actually runs
+    
+
     #creating KNN object and training
     knn = KNN(k=3)
     knn.fit(x_train, y_train)

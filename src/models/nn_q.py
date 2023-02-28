@@ -43,7 +43,6 @@ def main():
     model = tf.keras.Sequential([
         keras.layers.Reshape(target_shape=(28 * 28,), input_shape=(28, 28)),
         keras.layers.Dense(units=256, activation='relu'),
-        keras.layers.Dense(units=192, activation='relu'),
         keras.layers.Dense(units=128, activation='relu'),
         keras.layers.Dense(units=10, activation='softmax')
     ])
