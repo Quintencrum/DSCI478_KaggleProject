@@ -11,6 +11,8 @@ This project is based of off a Kaggle Getting Started competition
 
 URL for kaggle: https://www.kaggle.com/competitions/digit-recognizer/overview
 
+URL for write up (text only): https://docs.google.com/document/d/1WKR_NtwepPoWHewFO0Wxb7L-2WA6BWX5X3V339Nu5QY/edit?usp=sharing
+
 ## Library Ideas
 
 Pytorch
