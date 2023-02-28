@@ -1,3 +1,6 @@
 tensorflow
 matplotlib
 pandas
+
+#random forest
+scikit-learn
