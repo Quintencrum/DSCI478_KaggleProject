@@ -14,8 +14,8 @@ import os
 from sklearn.metrics import accuracy_score
 
 # setting path to import process data
-path2 = os.getcwd() + "/src"
-sys.path.append(path2)
+# path2 = os.getcwd() + "/src"
+# sys.path.append(path2)
 
 import process_data as data
 
@@ -54,21 +54,23 @@ class KNN:
 
 def main():
     #getting training data
-    xs_train, ys_train, xs_val, ys_val = data.main("train")    
+    xs_train, ys_train, xs_val, ys_val = data.main("train",0.05)
 
     #creating KNN object and training
     knn = KNN(k=3)
-    knn.fit(xs_train, ys_train)
+    knn.fit(xs_train, ys_train)  
+    print('here 1')
+
 
     #testing 
     y_pred = knn.predict(xs_val)
     print(y_pred)
     print('The KNN predicts the test data labels to be: ',y_pred)
 
-
     #Checking accuracy
     accuracy = accuracy_score(ys_val, y_pred)
     print("Accuracy:", accuracy)
+    print('here 3')
 
 
 if __name__ == '__main__':

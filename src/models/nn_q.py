@@ -13,8 +13,8 @@ import sys
 import os
 
 # setting path to import process data
-path2 = os.getcwd() + "/src"
-sys.path.append(path2)
+# path2 = os.getcwd() + "/src"
+# sys.path.append(path2)
 
 import process_data as data
 
@@ -22,12 +22,7 @@ from sklearn import ensemble
 from sklearn.ensemble import RandomForestClassifier
 
 
-
-
-
-
-
-def main():
+def nn():
     #getting training data
     xs_train, ys_train, xs_val, ys_val = data.main("train") 
 
@@ -42,7 +37,7 @@ def main():
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
     # Fit the model to the training data
-    model.fit(xs_train, ys_train, epochs=20)
+    model.fit(xs_train, ys_train, epochs=20,shuffle=True)
 
     #testing 
     y_pred = model.predict(xs_val)
@@ -52,6 +47,16 @@ def main():
     loss, accuracy = model.evaluate(xs_val, ys_val)
     print('Test accuracy:', round(accuracy,2))
 
+
+
+
+
+
+
+
+
+def main():
+    nn()
 
 
 
