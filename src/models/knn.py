@@ -11,6 +11,8 @@ from collections import Counter
 import sys
 import os
 
+from sklearn.metrics import accuracy_score
+
 # setting path to import process data
 path2 = os.getcwd() + "/src"
 sys.path.append(path2)
@@ -29,11 +31,14 @@ class KNN:
         return np.sqrt(np.sum((x1 - x2)**2))
 
     def fit(self, x_train, y_train):
-        self.x_train = x_train.values
-        self.y_train = y_train.values
+        # self.x_train = x_train.values
+        # self.y_train = y_train.values
+        self.x_train = x_train
+        self.y_train = y_train
 
     def predict(self, x_test):
-        x_test = x_test.values
+        # x_test = x_test.values
+        x_test = x_test
         y_pred = [self.check_dist_knn(x) for x in x_test]
         return np.array(y_pred)
 
@@ -49,28 +54,27 @@ class KNN:
 
 def main():
     #getting training data
-    train = data.get_data("train")
-    y_train = train.iloc[:,0]
-    x_train = train.iloc[:,1:]
-
-    #attempting to subset training data to make is so KNN actually runs
-    
+    xs_train, ys_train, xs_val, ys_val = data.main("train",0.01)
 
     #creating KNN object and training
     knn = KNN(k=3)
-    knn.fit(x_train, y_train)
+    knn.fit(xs_train, ys_train)  
+    print('here 1')
 
-    #getting testing data
-    # test = data.get_data("test")
-    # x_test = test.iloc[:,:]
 
-    # #testing 
-    # y_pred = knn.predict(x_test)
-    # print(y_pred)
-    print('Main complete')
+    #testing 
+    y_pred = knn.predict(xs_val)
+    print(y_pred)
+    print('The KNN predicts the test data labels to be: ',y_pred)
+
+    #Checking accuracy
+    accuracy = accuracy_score(ys_val, y_pred)
+    print("Accuracy:", accuracy)
+    print('here 3')
 
 
 if __name__ == '__main__':
-    print("hello world")
-    print('')
+    print("Hello World!")
+    print('Running KNN:')
+    print()
     main()

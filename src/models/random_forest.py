@@ -21,44 +21,54 @@ import process_data as data
 from sklearn import ensemble
 from sklearn.ensemble import RandomForestClassifier
 
+from subprocess import call
+from sklearn.tree import plot_tree
+
+
 #If you want to see entire prediction array use this :)
 # np.set_printoptions(threshold=sys.maxsize)
 
+def rf():
+    #getting data
+    xs_train, ys_train, xs_val, ys_val = data.main("train") 
+
+    randForest = RandomForestClassifier(100)    # (number of estimators)
+
+    randForest.fit(xs_train,ys_train)
+
+    #testing 
+    y_pred = randForest.predict(xs_val)
+    print('The Random Forest predicts the test data labels to be: ',y_pred)
 
 
+    accuracy = randForest.score(xs_val, ys_val)
+    print('Test accuracy:', accuracy)
+    return randForest
+
+
+def visualizationOfRF(model):
+    estimator = model.estimators_[5]
+    # print(type(estimator))
+    classNames = list(np.array([0,1,2,3,4,5,6,7,8,9], dtype='<U4'))
+    featureNames = list(np.asarray([f'pixel{i}' for i in range(28*28)]))
+
+    fig = plt.figure(figsize=(15, 10))
+
+    plot_tree(estimator, 
+        feature_names=featureNames,
+        class_names = classNames,
+        filled=True, impurity=True, 
+        rounded=True)
+
+    fig.savefig('randomForest.png')
 
 
 
 
 
 def main():
-    #getting training data
-    train = data.get_data("train")
-    y_train = train.iloc[:,0]
-    x_train = train.iloc[:,1:]
-
-    randForest = RandomForestClassifier(100)    # (number of estimators, random state)
-
-    randForest.fit(x_train,y_train)
-
-    #getting testing data
-    test = data.get_data("test")
-    x_test = test.iloc[:,:]
-
-    #testing 
-    y_pred = randForest.predict(x_test)
-    # print(y_pred)
-
-    # accuracy = randForest.score(x_train, y_train)
-    # print('Training accuracy:', accuracy,'----- This is TRAINING ACCURACY NOT TEST ACCURACY!!!!!!!!')
-
-    # print(type(y_pred))
-    # print(np.shape(y_pred))
-    # print(x_test.shape)
-
-
-    print('The Random Forest predicts the test data labels to be: ',y_pred)
-
+    randForest = rf()
+    visualizationOfRF(randForest)
 
 if __name__ == '__main__':
     print("Hello World!")
