@@ -88,7 +88,8 @@ def plot_digits_low_high_prob(model, data_frame: pd.DataFrame,
 
     fig.patch.set_facecolor('white')
     fig.suptitle(f'{model_name} Predicitions', fontweight='bold', size=16)
-    fig.set_figheight(8)
+    fig.tight_layout()
+    fig.set_figheight(6)
     fig.set_figwidth(8)
 
     if show:
