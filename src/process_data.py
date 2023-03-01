@@ -14,7 +14,7 @@ def get_data(ftype: str):
                      sep=',', header=[0], dtype=int)
     assert not np.any(raw_df.isna()), f"Nulls in the dataset {RAW_DATA_FILES[ftype]}"
     
-    return raw_df
+    return raw_df.values
 
 def get_training_data():
     process_dir = utils.get_data_path().joinpath("processed")
