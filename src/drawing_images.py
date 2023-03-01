@@ -18,10 +18,10 @@ import os
 
 import process_data as data
 
-def draw(n):
+def draw(n,imageName):
     plt.imshow(n,cmap=plt.cm.binary)
-    plt.show()
-    print('plt.show')
+    plt.savefig(imageName)
+    
 
 def draw_one_to_nine():
     xs_train, ys_train, xs_val, ys_val = data.main("train")
@@ -33,27 +33,28 @@ def draw_one_to_nine():
             if element == elementj:
                 inds[index] = indexj
                 break
+
+
+    draw(xs_train[inds[0]].reshape(28,28),'image_zero.png')
+    draw(xs_train[inds[1]].reshape(28,28),'image_one.png')
+    draw(xs_train[inds[2]].reshape(28,28),'image_two.png')
+    draw(xs_train[inds[3]].reshape(28,28),'image_three.png')
+    draw(xs_train[inds[4]].reshape(28,28),'image_four.png')
+    draw(xs_train[inds[5]].reshape(28,28),'image_five.png')
+    draw(xs_train[inds[6]].reshape(28,28),'image_six.png')
+    draw(xs_train[inds[7]].reshape(28,28),'image_seven.png')
+    draw(xs_train[inds[8]].reshape(28,28),'image_eight.png')
+    draw(xs_train[inds[9]].reshape(28,28),'image_nine.png')
     
-    print('are you still alive python')
+    print('done')
 
-    # print(inds[0])
+
+def main(drawOneToNine):
     
-    # print(xs_train[inds[0]].reshape(28,28))
-    # draw(xs_train[inds[0]].reshape(28,28))
-
-    for i in inds:
-        draw(xs_train[i].reshape(28,28))
-
-
-     
-
-
-def main():
-    #getting training data
-    xs_train, ys_train, xs_val, ys_val = data.main("train") 
-
-    # draw(xs_train[0].reshape(28,28))
-    draw_one_to_nine()
+    if drawOneToNine:
+        draw_one_to_nine()
+    else:
+        print('Nothing will happen :)')
 
 
 
