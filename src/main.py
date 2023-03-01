@@ -1,6 +1,6 @@
 import numpy as np
 
-from models import *
+from models import knn as
 import process_data as data
 import drawing_images as di
 
@@ -12,4 +12,5 @@ np.set_printoptions(precision=3, suppress=True)
 if __name__ == "__main__":
     # a,b,c,d = data.main("train", overwrite=False)
     #logit.main2()
-    di.draw_one_to_nine()
+    # di.draw_one_to_nine()
+    

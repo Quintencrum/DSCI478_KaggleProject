@@ -14,8 +14,8 @@ import os
 from sklearn.metrics import accuracy_score
 
 # setting path to import process data
-# path2 = os.getcwd() + "/src"
-# sys.path.append(path2)
+path2 = os.getcwd() + "/src"
+sys.path.append(path2)
 
 import process_data as data
 
