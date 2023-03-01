@@ -54,7 +54,7 @@ class KNN:
 
 def main():
     #getting training data
-    xs_train, ys_train, xs_val, ys_val = data.main("train",0.05)
+    xs_train, ys_train, xs_val, ys_val = data.main("train",0.01)
 
     #creating KNN object and training
     knn = KNN(k=3)

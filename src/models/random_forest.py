@@ -21,8 +21,8 @@ import process_data as data
 from sklearn import ensemble
 from sklearn.ensemble import RandomForestClassifier
 
-from sklearn.tree import export_graphviz
 from subprocess import call
+from sklearn.tree import plot_tree
 
 
 #If you want to see entire prediction array use this :)
@@ -48,22 +48,19 @@ def rf():
 
 def visualizationOfRF(model):
     estimator = model.estimators_[5]
-    print(type(estimator))
-    classNames = np.array([0,1,2,3,4,5,6,7,8,9]).toList()
-    featureNames = np.asarray([f'pixel{i}' for i in range(28*28)]).toList()
-    # Export as dot file
-    export_graphviz(estimator, out_file='tree.dot', 
-                    feature_names = featureNames,
-                    class_names = classNames,
-                    rounded = True, proportion = False, 
-                    precision = 2, filled = True)
+    # print(type(estimator))
+    classNames = list(np.array([0,1,2,3,4,5,6,7,8,9], dtype='<U4'))
+    featureNames = list(np.asarray([f'pixel{i}' for i in range(28*28)]))
 
-    # Convert to png using system command (requires Graphviz)
-    call(['dot', '-Tpng', 'tree.dot', '-o', 'tree.png', '-Gdpi=600'])
+    fig = plt.figure(figsize=(15, 10))
 
-    # # Display in jupyter notebook
-    # from IPython.display import Image
-    # Image(filename = 'tree.png')
+    plot_tree(estimator, 
+        feature_names=featureNames,
+        class_names = classNames,
+        filled=True, impurity=True, 
+        rounded=True)
+
+    fig.savefig('randomForest.png')
 
 
 
