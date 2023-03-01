@@ -30,7 +30,7 @@ def main():
     model.compile(optimizer='adam',
               loss='hinge',
               metrics=['accuracy'])
-    model.fit(xs_train, ls_train, epochs=10, batch_size=32, validation_data=(xs_val, ls_val))
+    model.fit(xs_train, ls_train, epochs=125, batch_size=32, validation_data=(xs_val, ls_val))
     
 
 if __name__ == "__main__":
