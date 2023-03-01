@@ -5,6 +5,26 @@ import process_data as data
 import utilities as utils
 import visualization as vis
 
+
+def tf_full_feature_extraction(model):
+    feature_extractor = tf.keras.Model(
+        inputs=model.inputs,
+        outputs=[layer.output for layer in model.layers]
+    )
+
+    # Call feature extractor on test input
+    ## The test image is fully black
+    x = tf.ones((1, 28, 28))
+    features = feature_extractor(x)
+    for feats in features:
+        if len(feats.shape) > 2:
+            feats = np.squeeze(feats, axis=0)
+            plt.imshow(feats, cmap=plt.cm.binary)
+            plt.show()
+    #print(features)
+
+    return features
+
 def tf_model_predict(model, verbose: int=0) -> pd.DataFrame:
     """
     Predict the labels of the test dataset using the `model`.
@@ -25,7 +45,10 @@ def tf_model_predict(model, verbose: int=0) -> pd.DataFrame:
     test_data = test_data.reshape(-1, 28*28).astype('float32')
 
     # Run the model
-    preds = model.predict(test_data, verbose=verbose)
+    try:
+        preds = model.predict(test_data, verbose=verbose)
+    except ValueError as e:
+        preds = model.predict(test_data.reshape(-1, 28, 28), verbose=verbose)
     
     # Take the 10 outputs and condence into one (using the max probability)
     pred_labels = np.argmax(preds, axis=1) # Class labels
@@ -38,7 +61,7 @@ def tf_model_predict(model, verbose: int=0) -> pd.DataFrame:
     return data_frame
 
 def tf_make_models_graphs(model, train_history, data_frame: pd.DataFrame,
-                          model_name: str, num_obvs: int=3,
+                          model_name: str, num_obvs: int=4,
                           save=False, show=False) -> None:
     """
     Create plots for the model. Both save and show cannot be true.
